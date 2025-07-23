@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/App/App.tsx", "src/components/Modal", "components/NoteFormsrc/components/NoteListList", "src/components/Pagination", "src/components/SearchBox"]
+  "include": ["src", "src/components/App/App.tsx", "src/components/Modal", "components/NoteFormsrc/components/NoteListList", "src/components/Pagination", "src/components/SearchBox"]
 }

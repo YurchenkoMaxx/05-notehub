@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App/App";
+import App from "./components/App/App";
 import "modern-normalize";
 import "./global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

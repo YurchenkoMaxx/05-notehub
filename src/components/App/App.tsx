@@ -2,15 +2,15 @@ import css from "./App.module.css";
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import { fetchNotes, createNote, deleteNote } from "../services/noteService";
-import type { FetchNotesResponse } from "../services/noteService";
-import SearchBox from "../components/SearchBox/SearchBox";
-import NoteList from "../components/NoteList/NoteList";
-import Pagination from "../components/Pagination/Pagination";
-import Modal from "../components/Modal/Modal";
-import NoteForm from "../components/NoteForm/NoteForm";
-import Loader from "../components/Loader/Loader";
-import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
+import { fetchNotes, createNote, deleteNote } from "../../services/noteService";
+import type { FetchNotesResponse } from "../../services/noteService";
+import SearchBox from "../SearchBox/SearchBox";
+import NoteList from "../NoteList/NoteList";
+import Pagination from "../Pagination/Pagination";
+import Modal from "../Modal/Modal";
+import NoteForm from "../NoteForm/NoteForm";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { useDebounce } from "use-debounce";
 
 export default function App() {
