@@ -2,7 +2,7 @@ import css from "./App.module.css";
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import { fetchNotes, createNote, deleteNote } from "../../services/noteService";
+import { fetchNotes, createNote } from "../../services/noteService";
 import type { FetchNotesResponse } from "../../services/noteService";
 import SearchBox from "../SearchBox/SearchBox";
 import NoteList from "../NoteList/NoteList";
@@ -38,13 +38,6 @@ export default function App() {
     },
   });
 
-  const deleteMutation = useMutation({
-    mutationFn: deleteNote,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
-    },
-  });
-
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
@@ -72,12 +65,7 @@ export default function App() {
         <ErrorMessage message={error?.message || "Something went wrong"} />
       )}
 
-      {data && data.notes?.length > 0 && (
-        <NoteList
-          notes={data.notes}
-          onDelete={(id) => deleteMutation.mutate(id)}
-        />
-      )}
+      {data && data.notes?.length > 0 && <NoteList notes={data.notes} />}
 
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
