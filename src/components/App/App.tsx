@@ -45,10 +45,6 @@ export default function App() {
     },
   });
 
-  const handlePageChange = (newPage: number) => setPage(newPage);
-
-  const handleDelete = (id: number) => deleteMutation.mutate(id);
-
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
@@ -62,8 +58,8 @@ export default function App() {
         {data && data.totalPages > 1 && (
           <Pagination
             totalPages={data.totalPages}
-            onPageChange={handlePageChange}
             currentPage={page}
+            onPageChange={(newPage) => setPage(newPage)}
           />
         )}
         <button className={css.button} onClick={() => setIsModalOpen(true)}>
@@ -72,16 +68,21 @@ export default function App() {
       </header>
 
       {isLoading && <Loader />}
-      {isError && <ErrorMessage message={error?.message || "Error"} />}
+      {isError && (
+        <ErrorMessage message={error?.message || "Something went wrong"} />
+      )}
 
       {data && data.notes?.length > 0 && (
-        <NoteList notes={data.notes} onDelete={handleDelete} />
+        <NoteList
+          notes={data.notes}
+          onDelete={(id) => deleteMutation.mutate(id)}
+        />
       )}
 
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
           <NoteForm
-            onSubmit={createMutation.mutate}
+            onSubmit={(values) => createMutation.mutate(values)}
             onCancel={() => setIsModalOpen(false)}
           />
         </Modal>
